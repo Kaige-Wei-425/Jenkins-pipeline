@@ -46,6 +46,13 @@ pipeline {
     }
 
     post {
+        always {
+            script {
+                def buildLog = currentBuild.rawBuild.getLog(Integer.MAX_VALUE).join("\n")
+                writeFile file: 'build.log', text: buildLog
+            }
+        }
+
         success {
             emailext(
                 attachmentsPattern: '**/build.log',
