@@ -47,17 +47,21 @@ pipeline {
 
     post {
         success {
-            mail to: 'kwei19940425@gmail.com',
-                  subject: " Test and security scan Successfully",
-                  body: "Test and security scan successfully.",
-                  attachLog: true
+            emailext(
+                attachmentsPattern: '**/build.log',
+                subject: " Test and security scan Successfully",
+                body: "Test and security scan successfully.",
+                to: 'kwei19940425@gmail.com'
+            )
         }
 
         failure {
-            mail to: 'kwei19940425@gmail.com',
-                  subject: "Test and security scan Failed",
-                  body: "Test and security scan failed. Check the logs for more information.",
-                  attachLog: true
+            emailext(
+                attachmentsPattern: '**/build.log',
+                subject: " Test and security scan Failed",
+                body: "Test and security scan Failed.",
+                to: 'kwei19940425@gmail.com'
+            )
         }
     }
 }
