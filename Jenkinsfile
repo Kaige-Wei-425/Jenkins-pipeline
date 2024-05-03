@@ -46,29 +46,18 @@ pipeline {
     }
 
     post {
-        always {
-            script {
-                def buildLog = currentBuild.rawBuild.getLog(Integer.MAX_VALUE).join("\n")
-                writeFile file: 'build.log', text: buildLog
-            }
-        }
-
         success {
-            emailext(
-                attachmentsPattern: '**/build.log',
-                subject: " Test and security scan Successfully",
+            emailext subject: " Test and security scan Successfully",
                 body: "Test and security scan successfully.",
-                to: 'kwei19940425@gmail.com'
-            )
+                to: 'kwei19940425@gmail.com',
+                attachLog: true
         }
 
         failure {
-            emailext(
-                attachmentsPattern: '**/build.log',
-                subject: " Test and security scan Failed",
+            emailext subject: " Test and security scan Failed",
                 body: "Test and security scan Failed.",
                 to: 'kwei19940425@gmail.com'
-            )
+                attachLog: true
         }
     }
 }
