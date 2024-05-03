@@ -42,21 +42,23 @@ pipeline {
             steps {
                 echo 'Deploying to AWS EC2 production instance.'
             }
-            post {
-                success {
-                emailext subject: " Test and security scan Successfully",
-                body: "Test and security scan successfully.",
-                to: 'kwei19940425@gmail.com',
-                attachLog: true
-                }
+        }
 
-                failure {
-                emailext subject: " Test and security scan Failed",
-                body: "Test and security scan Failed.",
-                to: 'kwei19940425@gmail.com',
-                attachLog: true
-                }
-            }
+    }
+
+    post {
+        success {
+        emailext subject: " Test and security scan Successfully",
+        body: "Test and security scan successfully.",
+        to: 'kwei19940425@gmail.com',
+        attachLog: true
+        }
+
+        failure {
+        emailext subject: " Test and security scan Failed",
+        body: "Test and security scan Failed.",
+        to: 'kwei19940425@gmail.com',
+        attachLog: true
         }
     }
 }
