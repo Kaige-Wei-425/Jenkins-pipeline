@@ -56,7 +56,7 @@ pipeline {
         failure {
             emailext subject: " Test and security scan Failed",
                 body: "Test and security scan Failed.",
-                to: 'kwei19940425@gmail.com'
+                to: 'kwei19940425@gmail.com',
                 attachLog: true
         }
     }
